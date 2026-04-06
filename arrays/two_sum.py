@@ -1,5 +1,5 @@
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums, target: int):
         map1 = {}
         for i in range(len(nums)):
             if target - nums[i] in map1.keys():
