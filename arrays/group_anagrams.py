@@ -17,8 +17,6 @@ class Solution:
             for ch in word:
                 charArr[ord(ch)-97]+=1
             anagrams_map[tuple(charArr)].append(word)
-        print(anagrams_map)
-        
         return list(anagrams_map.values())
         
 
