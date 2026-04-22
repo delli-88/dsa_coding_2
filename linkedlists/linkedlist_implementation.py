@@ -1,6 +1,6 @@
-class Node:
-    def __init__(self, data):
-        self.data = data
+class ListNode:
+    def __init__(self, val):
+        self.val = val
         self.next = None
 
     def __repr__(self):
@@ -25,14 +25,14 @@ class LinkedList:
     def __iter__(self):
         curr = self.head
         while curr:
-            yield curr.data
+            yield curr.val
             curr = curr.next
 
     def is_empty(self):
         return self.length == 0
 
-    def prepend(self, data):
-        new_node = Node(data)
+    def prepend(self, val):
+        new_node = ListNode(val)
 
         if self.is_empty():
             self.head = self.tail = new_node
@@ -42,8 +42,8 @@ class LinkedList:
 
         self.length += 1
 
-    def append(self, data):
-        new_node = Node(data)
+    def append(self, val):
+        new_node = ListNode(val)
 
         if self.is_empty():
             self.head = self.tail = new_node
@@ -53,15 +53,15 @@ class LinkedList:
 
         self.length += 1
 
-    def insert(self, index, data):
+    def insert(self, index, val):
         if index <= 0:
-            self.prepend(data)
+            self.prepend(val)
             return
         if index >= self.length:
-            self.append(data)
+            self.append(val)
             return
 
-        new_node = Node(data)
+        new_node = ListNode(val)
         curr = self.head
 
         for _ in range(index - 1):
@@ -70,7 +70,6 @@ class LinkedList:
         new_node.next = curr.next
         curr.next = new_node
         self.length += 1
-
 
     def delete_by_index(self, index):
         if index < 0 or index >= self.length:
@@ -95,7 +94,7 @@ class LinkedList:
 
         self.length -= 1
 
-    def delete_by_value(self, data):
+    def delete_by_value(self, val):
         if self.is_empty():
             raise ValueError("List is empty")
 
@@ -103,7 +102,7 @@ class LinkedList:
         prev = None
 
         while curr:
-            if curr.data == data:
+            if curr.val == val:
                 if prev is None:
                     self.head = curr.next
                     if self.head is None:
@@ -121,12 +120,12 @@ class LinkedList:
 
         raise ValueError("Value not found")
 
-    def find(self, data):
+    def find(self, val):
         curr = self.head
         index = 0
 
         while curr:
-            if curr.data == data:
+            if curr.val == val:
                 return index
             curr = curr.next
             index += 1
@@ -141,23 +140,22 @@ class LinkedList:
         for _ in range(index):
             curr = curr.next
 
-        return curr.data
+        return curr.val
 
     def clear(self):
         self.head = None
         self.tail = None
         self.length = 0
+    
+    def createLinkedList(self, head):
 
+        if len(head)==0:
+            return None
+        
+        for node in range(len(head)):
+            self.append(head[node])
+        
+        return self.head
 
-myLinkedList = LinkedList()
-print(myLinkedList)
-myLinkedList.prepend(3)
-myLinkedList.prepend(4)
-myLinkedList.append(5)
-print(myLinkedList)
-myLinkedList.insert(3,6)
-myLinkedList.delete_by_value(3)
-print(myLinkedList)
-myLinkedList.prepend(3)
-myLinkedList.delete_by_index(3)
-print(myLinkedList)
+    def printLinkedList(self):
+        return " -> ".join(str(x) for x in self) + " -> None"
