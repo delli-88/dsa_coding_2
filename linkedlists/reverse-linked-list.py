@@ -1,9 +1,9 @@
-import linkedlist_implementation
+import singly_linked_list
 
 class Solution:
     def reverseList(self, head):
 
-        # head = linkedlist_implementation.LinkedList().createLinkedList(head)
+        # head = singly_linked_list.LinkedList().createLinkedList(head)
         if head == None or head.next == None:
             return head
 
