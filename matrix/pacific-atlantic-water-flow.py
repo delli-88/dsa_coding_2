@@ -8,11 +8,9 @@ class Solution:
         pacific = [[False] * m for _ in range(n)]
         atlantic = [[False] * m for _ in range(n)]
 
-        # run BFS for both oceans
         self.bfs(heights, pacific, [(r, 0) for r in range(n)] + [(0, c) for c in range(m)])
         self.bfs(heights, atlantic, [(r, m-1) for r in range(n)] + [(n-1, c) for c in range(m)])
 
-        # collect result
         res = []
         for r in range(n):
             for c in range(m):
@@ -27,7 +25,6 @@ class Solution:
 
         queue = deque(starts)
 
-        # mark all starting points
         for r, c in starts:
             ocean[r][c] = True
 
