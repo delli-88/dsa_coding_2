@@ -1,6 +1,6 @@
 from collections import defaultdict, deque
 class Solution:
-    def canFinish(self, numCourses, prerequisites) -> bool:
+    def findOrder(self, numCourses, prerequisites):
         graph = defaultdict(list)
         indegree = [0] * numCourses
 
@@ -11,12 +11,11 @@ class Solution:
 
         # start with courses having no prerequisites
         queue = deque(i for i in range(numCourses) if indegree[i] == 0)
-
-        completed = 0
+        order = []
 
         while queue:
             node = queue.popleft()
-            completed += 1
+            order.append(node)
 
             for neighbor in graph[node]:
                 indegree[neighbor] -= 1
@@ -24,6 +23,6 @@ class Solution:
                 if indegree[neighbor] == 0:
                     queue.append(neighbor)
 
-        return completed == numCourses
+        return order if len(order) == numCourses else []
 
-print(Solution().canFinish(numCourses = 9, prerequisites = [[0,1],[1,2],[1,3],[2,4],[3,4],[4,5],[5,6],[6,7],[7,8]]))
+print(Solution().findOrder(numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]))

@@ -1,5 +1,4 @@
 from collections import deque
-from typing import Optional
 
 class Node:
     def __init__(self, val = 0, neighbors = None):
