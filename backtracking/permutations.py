@@ -17,4 +17,4 @@ class Solution:
 
         return
 
-print(Solution().permute(nums = [1,2,3]))
+print(Solution().permute(nums = [1,2,3,4]))
